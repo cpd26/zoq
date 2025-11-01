@@ -69,17 +69,20 @@ function App() {
         <Routes>
           {!user ? (
             <>
-              <Route path="/auth" element={<AuthPage onLogin={handleLogin} />} />
-              <Route path="*" element={<Navigate to="/auth" replace />} />
+              <Route path="/" element={<AuthPage onLogin={handleLogin} />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </>
           ) : (
-            <Route path="/" element={<MainLayout user={user} onLogout={handleLogout} />}>
-              <Route index element={<Feed user={user} />} />
-              <Route path="messages" element={<Messages user={user} />} />
-              <Route path="messages/:userId" element={<Messages user={user} />} />
-              <Route path="friends" element={<Friends user={user} />} />
-              <Route path="profile" element={<Profile user={user} setUser={setUser} />} />
-            </Route>
+            <>
+              <Route path="/" element={<MainLayout user={user} onLogout={handleLogout} />}>
+                <Route index element={<Feed user={user} />} />
+                <Route path="messages" element={<Messages user={user} />} />
+                <Route path="messages/:userId" element={<Messages user={user} />} />
+                <Route path="friends" element={<Friends user={user} />} />
+                <Route path="profile" element={<Profile user={user} setUser={setUser} />} />
+              </Route>
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </>
           )}
         </Routes>
       </BrowserRouter>
