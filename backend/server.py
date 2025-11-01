@@ -346,7 +346,7 @@ async def search_users(q: str, current_user: dict = Depends(get_current_user)):
     return users
 
 # Post Routes
-@api_router.post("/posts", response_model=Post)
+@api_router.post("/posts", response_model=Post, status_code=201)
 async def create_post(post_data: PostCreate, current_user: dict = Depends(get_current_user)):
     post_id = str(uuid.uuid4())
     post_doc = {
