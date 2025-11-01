@@ -432,7 +432,7 @@ async def like_post(post_id: str, current_user: dict = Depends(get_current_user)
         })
         return {"liked": True}
 
-@api_router.post("/posts/{post_id}/comments", response_model=Comment)
+@api_router.post("/posts/{post_id}/comments", response_model=Comment, status_code=201)
 async def add_comment(post_id: str, comment_data: CommentCreate, current_user: dict = Depends(get_current_user)):
     comment_id = str(uuid.uuid4())
     comment_doc = {
